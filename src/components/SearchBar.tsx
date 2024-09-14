@@ -1,17 +1,20 @@
 import {useState} from "react";
 
-const SearchBar = () => {
+
+interface submitProps{
+  handleSubmit: (term: string) => void
+}
+
+const SearchBar = ({handleSubmit}: submitProps) => {
 
   const [term, setTerm] = useState("")
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setTerm(term)
-    console.log(term)
-  }
+
+  
+
   return (
     <div className="mt-4 px-6">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit= {(e) => { e.preventDefault(); handleSubmit(term); }}>
         <div className="flex justify-between">
           <input
             className="w-[32rem] bg-white  h-12 rounded-lg pl-2 placeholder:text-black outline-none"
